@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Transformers;
+
+/**
+ * Class Transformer
+ *
+ */
+class UserTransformer
+{
+    /**
+     * Transform a collection to a response
+     *
+     * @param array $items
+     * @return array
+     */
+    public function transformMany(array $items)
+    {
+        return array_map([$this, 'transform'], $items);
+    }
+
+    /**
+     * To transform a single item.
+     *
+     * @param $item
+     * @return mixed
+     */
+    public function transform($item): array
+    {
+        return [
+            'id' => $item['_id'],
+            'name' => $item['name']
+        ];
+    }
+}
