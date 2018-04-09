@@ -1,21 +1,34 @@
 package main
 
 import (
-  "net/http"
-  "strings"
+	"github.com/joho/godotenv"
+	"github.com/gin-gonic/gin"
+	"app/app/config"
+	"app/app"
 )
 
-func sayHello(w http.ResponseWriter, r *http.Request) {
-  message := r.URL.Path
-  message = strings.TrimPrefix(message, "/")
-  message = "Hello " + message
-
-  w.Write([]byte(message))
-}
-
 func main() {
-  http.HandleFunc("/", sayHello)
-  if err := http.ListenAndServe(":80", nil); err != nil {
-    panic(err)
-  }
+
+	//**************
+	// Load environment
+	//**************
+	godotenv.Load()
+
+	// **************
+	// conntect to mongo
+	// **************
+	config.Connect()
+
+	// **************
+	// init Gin & Router
+	// **************
+	r := gin.Default()
+	router := app.Router{};
+	router.Init(r)
+
+
+	// **************
+	// run
+	// **************
+	r.Run(":80")
 }
