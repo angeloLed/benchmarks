@@ -33,21 +33,21 @@ services:
   #    - 8003:80
   #   command: sh -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run main.go"
 
-  # #nodejs + express
-  nodejs:
-    image: node:8.9.4
-    depends_on:
-        - mongodb347
-    networks:
-     - public
-    container_name: "nodejs8.9.4"
-    volumes:
-     - ./nodejs:/nodejs
-    ports:
-     - 8001:80
-    environment:
-      - NODE_ENV=production
-    command: bash -c "cd /nodejs && npm install && npm run serve"
+  # # #nodejs + express
+  # nodejs:
+  #   image: node:8.9.4
+  #   depends_on:
+  #       - mongodb347
+  #   networks:
+  #    - public
+  #   container_name: "nodejs8.9.4"
+  #   volumes:
+  #    - ./nodejs:/nodejs
+  #   ports:
+  #    - 8001:80
+  #   environment:
+  #     - NODE_ENV=production
+  #   command: bash -c "cd /nodejs && npm install && npm run serve"
 
   # #nodejs vanilla
   # nodejsvanilla:
@@ -65,30 +65,30 @@ services:
   #     - NODE_ENV=production
   #   command: bash -c "cd /nodejs && npm install && npm run serve"
   
-  # # php stack ( Nginx PHP-FPM ): https://github.com/OsLab/docker-php-nginx
-  # php72:
-  #   image: dockerphp/nginx:7.2-stretch
-  #   container_name: "php7.2"
-  #   depends_on:
-  #       - mongodb347
-  #   volumes:
-  #       - ./php72/crud:/app/crud
-  #       - ./php72/nginx.conf:/etc/nginx/nginx.conf
-  #       - ./php72/php.ini:/etc/php5/fpm/php.ini
-  #   ports:
-  #       - "8002:80"
-  #   networks:
-  #    - public
-  # php72Composer:
-  #   image: dockerphp/nginx:7.2-stretch
-  #   container_name: "php7.2Composer"
-  #   volumes:
-  #       - ./php72/crud:/app/crud
-  #   networks:
-  #    - public
-  #   environment:
-  #     - COMPOSE_HTTP_TIMEOUT=200
-  #   command: bash -c "cd /app/crud && composer update --verbose -o"
+  # php stack ( Nginx PHP-FPM ): https://github.com/OsLab/docker-php-nginx
+  php72:
+    image: dockerphp/nginx:7.2-stretch
+    container_name: "php7.2"
+    depends_on:
+        - mongodb347
+    volumes:
+        - ./php72/crud:/app/crud
+        - ./php72/nginx.conf:/etc/nginx/nginx.conf
+        - ./php72/php.ini:/etc/php5/fpm/php.ini
+    ports:
+        - "8002:80"
+    networks:
+     - public
+  php72Composer:
+    image: dockerphp/nginx:7.2-stretch
+    container_name: "php7.2Composer"
+    volumes:
+        - ./php72/crud:/app/crud
+    networks:
+     - public
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=200
+    command: bash -c "cd /app/crud && composer update --verbose -o"
   
   #MONGODB
   mongodb347:

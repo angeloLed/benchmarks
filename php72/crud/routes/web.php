@@ -15,5 +15,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/users', 'UserController@all');
-$router->post('/users', 'UserController@store');
+$router->get('/heats', 'UserController@all');
+$router->post('/heats', 'UserController@store');
+$router->get('/userHeats', 'UserController@getAllUserHasHeatZone');

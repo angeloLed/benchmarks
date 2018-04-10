@@ -20,9 +20,14 @@ class UserRepo
         $this->model = $user;
     }
 
-    public function getAll(): array
+    public function getAll($filters = []): array
     {
-        return $this->model->get()->toArray();
+        return $this->model->get($filters)->toArray();
+    }
+
+    public function whereRaw($filters = []): array
+    {
+        return $this->model->whereRaw($filters)->get()->toArray();
     }
 
     public function store(array $data): array

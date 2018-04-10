@@ -36,6 +36,15 @@ class UserController extends Controller
         );
     }
 
+    public function getAllUserHasHeatZone(Request $request): JsonResponse
+    {
+        $users = $this->service->getAllUserHasHeatZone($request->all());
+        $this->statusCode = 200;
+        return $this->respond(
+            ['data' => $users]
+        );
+    }
+
     public function store(Request $request): JsonResponse
     {
         $user = $this->service->store($request->all());
