@@ -19,35 +19,35 @@ services:
   #    - 8004:80
   #   command: sh -c "cd /app && dotnet publish -c Release -o out"
 
-  #golang
-  golang1101Gin:
-    image: golang:1.10.1
-    depends_on:
-        - mongodb347
-    networks:
-     - public
-    container_name: "golang1.10.1Gin"
-    volumes:
-     - ./golang:/go/src/app
-    ports:
-     - 8003:80
-    command: sh -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run main.go"
-
-  # #nodejs + express
-  # nodejs:
-  #   image: node:8.9.4
+  # #golang
+  # golang1101Gin:
+  #   image: golang:1.10.1
   #   depends_on:
   #       - mongodb347
   #   networks:
   #    - public
-  #   container_name: "nodejs8.9.4"
+  #   container_name: "golang1.10.1Gin"
   #   volumes:
-  #    - ./nodejs:/nodejs
+  #    - ./golang:/go/src/app
   #   ports:
-  #    - 8001:80
-  #   environment:
-  #     - NODE_ENV=production
-  #   command: bash -c "cd /nodejs && npm install && npm run serve"
+  #    - 8003:80
+  #   command: sh -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run main.go"
+
+  # #nodejs + express
+  nodejs:
+    image: node:8.9.4
+    depends_on:
+        - mongodb347
+    networks:
+     - public
+    container_name: "nodejs8.9.4"
+    volumes:
+     - ./nodejs:/nodejs
+    ports:
+     - 8001:80
+    environment:
+      - NODE_ENV=production
+    command: bash -c "cd /nodejs && npm install && npm run serve"
 
   # #nodejs vanilla
   # nodejsvanilla:

@@ -6,8 +6,10 @@ class UserTransformer {
 
     transform(item) {
         return {
-            id: item._id,
-            name: item.name
+            heatId: item._id,
+            username: item.user,
+            x: item.x,
+            y: item.y,
         }
     }
 

@@ -1,7 +1,8 @@
 'use strict';
 
 //express
-const http = require('http'); 
+const http = require('http');
+const url = require('url');
 
 // Controller
 const userController = new (require('./app/UserController'));
@@ -22,14 +23,27 @@ server.on('request', function (req, res) {
         console.log( req.method + ' ' + req.url);
 
         //body to json
-        req.body = JSON.parse(body);
+        req.body = JSON.parse(body || '{}');
 
-        //sorting route
-        if(req.method == 'GET' && req.url == '/users') {
+        //create url infos
+        const urlInfo = url.parse(req.url, true);
+
+        //build querystring (to simulate express)
+        req.query = urlInfo.query;
+
+        //sorting route ( if you want an router engine, maybe is not a vanilla test that you looking for )
+        if(req.method == 'GET' && urlInfo.pathname == '/heats') {
             userController.getAll(req, res);
         }
-        if(req.method == 'POST' && req.url == '/users') {
+        else if(req.method == 'POST' && urlInfo.pathname == '/heats') {
             userController.store(req, res);
+        }
+        else if(req.method == 'GET' && urlInfo.pathname == '/userHeats') {
+            userController.getAllUserHasHeatZone(req, res);
+        }
+        else {
+            res.writeHead(404, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({'error': 'route not found'}));
         }
     });
 });

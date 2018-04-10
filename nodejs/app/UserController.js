@@ -10,17 +10,24 @@ class UserController {
         this.transformer = new Transformer;
     }
 
-    getAll(req, res) {
-        return this.service.getAll()
-        .then( (users) => {
-            return res.status(200).json( this.transformer.transformMany(users) );
+    async getAll(req, res) {
+        const heats = await this.service.getAll(req.query);
+        return res.status(200).json({
+            'data': this.transformer.transformMany(heats)
         });
     }
 
-    store(req, res) {
-        return this.service.store(req.body)
-        .then( (data) => {
-            return res.status(201).json(this.transformer.transform(data));
+    async getAllUserHasHeatZone(req, res) {
+        const users = await this.service.getAllUserHasHeatZone(req.query);
+        return res.status(200).json({
+            'data': users
+        });
+    }
+
+    async store(req, res) {
+        const heat = await this.service.store(req.body)
+        return res.status(201).json({
+            'data': this.transformer.transform(heat)
         });
     }
 }

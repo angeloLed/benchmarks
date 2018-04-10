@@ -10,24 +10,28 @@ class UserController {
         this.transformer = new Transformer;
     }
 
-    getAll(req, res) {
-        return this.service.getAll()
-        .then( (users) => {
-            res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify(
-                this.transformer.transformMany(users)
-            ));
-        });
+    async getAll(req, res) {
+        const users = await this.service.getAll(req.query)
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(
+            {'data': this.transformer.transformMany(users)}
+        ));
     }
 
-    store(req, res) {
-        return this.service.store(req.body)
-        .then( (data) => {
-            res.writeHead(201, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify(
-                this.transformer.transform(data)
-            ));
-        });
+    async getAllUserHasHeatZone(req, res) {
+        const users = await this.service.getAllUserHasHeatZone(req.query);
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(
+            { 'data': users }
+        ));
+    }
+
+    async store(req, res) {
+        const user = await this.service.store(req.body)
+        res.writeHead(201, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(
+            { 'data': this.transformer.transform(user)}
+        ));
     }
 }
 

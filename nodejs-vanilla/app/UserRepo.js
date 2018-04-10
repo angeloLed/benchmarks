@@ -8,8 +8,8 @@ class UserRepo {
         this.user = new User;
     }
 
-    getAll() {
-        return this.user.getAll();
+    getAll(filters = {}) {
+        return this.user.getAll(filters);
     }
 
     store(data) {

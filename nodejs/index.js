@@ -16,8 +16,9 @@ app.use(function (req, res, next) {
 });
 
 //routes
-app.get('/users', (req,res) => { userController.getAll(req, res) });
-app.post('/users', (req,res) => { userController.store(req, res) });
+app.get('/heats', (req,res) => { userController.getAll(req, res) });
+app.post('/heats', (req,res) => { userController.store(req, res) });
+app.get('/userHeats', (req,res) => { userController.getAllUserHasHeatZone(req, res) });
 
 //run
 app.listen(80, () => {
