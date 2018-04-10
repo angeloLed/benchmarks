@@ -13,5 +13,6 @@ func (r *Router) Init(gr *gin.Engine) {
 
 	userController := controllers.GetInstance()
 	gr.GET("/users", userController.GetAll)
+	gr.GET("/userHeats", userController.GetAllUserHasHeatZone)
 	gr.POST("/users", userController.Store)
 }

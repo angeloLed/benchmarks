@@ -14,9 +14,10 @@ func (u *UserRepo) Init() {
 	u.model = models.User{}
 }
 
-func (u *UserRepo) ShowAll() []bson.M {
-	models, _ := u.model.Get()
-	return models
+func (u *UserRepo) ShowAll(filters bson.M) []bson.M {
+	models, _ := u.model.Get(filters)
+	data, _ := bson.Marshal(&models)
+	return data
 }
 
 func (u *UserRepo) Store(body bson.M) (bson.M, error) {

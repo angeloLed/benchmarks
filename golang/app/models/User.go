@@ -31,10 +31,14 @@ func(u *User) Create(model *User) {
 	}
 }
 
-func(u *User) Get() ([]bson.M, error) {
-    pipe := u.getMongoCollectionSession().Pipe([]bson.M{})
-    resp := []bson.M{}
-	err := pipe.All(&resp)
+func(u *User) Get(query bson.M) ([]User, error) {
+    // pipe := u.getMongoCollectionSession().Pipe([]bson.M{})
+    // resp := []bson.M{}
+	// err := pipe.All(&resp)
+	
+	results := []User{}
+	c := u.getMongoCollectionSession()
+	err := c.Find(query).All(&results)
     
-	return resp, err
+	return results, err
 }

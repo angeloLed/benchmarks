@@ -21,11 +21,19 @@ func GetInstance() UserController {
 }
 
 func (u *UserController) GetAll(c *gin.Context) {
-	users := u.Service.ShowMany()
+	users := u.Service.ShowMany(c.Request.URL.Query())
 	c.JSON(http.StatusOK, gin.H{
 		"data": users,
 	})
 }
+
+func (u *UserController) getAllUserHasHeatZone(c *gin.Context) {
+	users := u.Service.getAllUserHasHeatZone(c.Request.URL.Query())
+	c.JSON(http.StatusOK, gin.H{
+		"data": users,
+	})
+}
+
 
 func(u *UserController) Store(c *gin.Context) {
 	
