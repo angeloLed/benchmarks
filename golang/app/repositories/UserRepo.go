@@ -7,17 +7,17 @@ import (
 )
 
 type UserRepo struct {
-	Model models.User
+	model models.User
 }
 
 func (u *UserRepo) Init() {
-	u.Model = models.User{}
+	u.model = models.User{}
 }
 
-// func (u *UserRepo) ShowAll() []bson.M {
-// 	models, _ := u.Model.Get()
-// 	return models
-// }
+func (u *UserRepo) ShowAll() []bson.M {
+	models, _ := u.model.Get()
+	return models
+}
 
 func (u *UserRepo) Store(body bson.M) (bson.M, error) {
 
@@ -25,7 +25,7 @@ func (u *UserRepo) Store(body bson.M) (bson.M, error) {
 		Name: body["name"].(string),
 	}
 
-	u.Model.Create(&user)
+	u.model.Create(&user)
 
 	return body, nil
 }

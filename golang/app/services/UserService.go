@@ -14,10 +14,10 @@ func (u *UserService) Init() {
 	u.repo = repositories.UserRepo{}
 }
 
-// func (r *UserService) ShowMany() []bson.M {
-// 	models, _ := r.Model.Get()
-// 	return models
-// }
+func (u *UserService) ShowMany() []bson.M {
+	models := u.repo.ShowAll()
+	return models
+}
 
 func (u *UserService) Store(body bson.M) (bson.M, error) {
 	return u.repo.Store(body)

@@ -12,6 +12,6 @@ type Router struct {
 func (r *Router) Init(gr *gin.Engine) {
 
 	userController := controllers.GetInstance()
-	// gr.GET("/users", userController.GetAll)
+	gr.GET("/users", userController.GetAll)
 	gr.POST("/users", userController.Store)
 }

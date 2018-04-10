@@ -20,12 +20,12 @@ func GetInstance() UserController {
 	return UserController{Service: service}
 }
 
-// func (u *UserController) GetAll(c *gin.Context) {
-// 	users := rc.Service.ShowMany()
-// 	c.JSON(http.StatusOK, gin.H{
-// 		"data": users,
-// 	})
-// }
+func (u *UserController) GetAll(c *gin.Context) {
+	users := u.Service.ShowMany()
+	c.JSON(http.StatusOK, gin.H{
+		"data": users,
+	})
+}
 
 func(u *UserController) Store(c *gin.Context) {
 	
