@@ -13,17 +13,22 @@ func (u *UserRepo) Init() {
 	u.model = models.User{}
 }
 
-func (u *UserRepo) ShowAll(filters bson.M) []interface{} {
+func (u *UserRepo) GetAllUserHasHeatZone(filters bson.M) []models.User {
 	models, _ := u.model.Get(filters)
-	var v []interface{}
-    v = models
-	return v
+	return models
+}
+
+func (u *UserRepo) ShowAll(filters bson.M) []models.User {
+	models, _ := u.model.Get(filters)
+	return models
 }
 
 func (u *UserRepo) Store(body bson.M) (bson.M, error) {
 
 	user := models.User{
-		Name: body["name"].(string),
+		User: body["user"].(string),
+		X: int(body["x"].(float64)),
+		Y: int(body["y"].(float64)),
 	}
 
 	u.model.Create(&user)

@@ -3,6 +3,7 @@ package services
 import (
 	"app/app/repositories"
 	"gopkg.in/mgo.v2/bson"
+	"app/app/models"
 )
 
 type UserService struct {
@@ -13,33 +14,48 @@ func (u *UserService) Init() {
 	u.repo = repositories.UserRepo{}
 }
 
-func (u *UserService) ShowMany(filters bson.M) []bson.M {
+func (u *UserService) ShowMany(filters bson.M) ([]models.User) {
 	models := u.repo.ShowAll(filters)
 	return models
 }
 
-func (u *UserService) GetAllUserHasHeatZone(parameters bson.M) []bson.M {
+func (u *UserService) GetAllUserHasHeatZone(x int, y int, radius int) ([]string) {
 
-	var filters bson.M{}
+	filters := bson.M{}
 
-	if parameters["x"] != nil {
-		min := parameters["x"].(int) - parameters["radius"].(int)
-		max := parameters["x"].(int) + parameters["radius"].(int)
-		filters["x"] = bson.M{ "$gte": min,  "$lte": max }
+	minx := x - radius
+	maxx := y + radius
+	filters["x"] = bson.M{
+		"$gte": minx,
+		"$lte": maxx,
 	}
 
-	if parameters["y"] != nil {
-		min := parameters["y"].(int) - parameters["radius"].(int)
-		max := parameters["y"].(int) + parameters["radius"].(int)
-		filters["y"] = bson.M{ "$gte": min,  "$lte": max }
-	}
-
-	if parameters["user"] != nil {
-		filters["user"] = parameters["radius"]
+	miny := x - radius
+	maxy := y + radius
+	filters["y"] = bson.M{ 
+		"$gte": miny,
+		"$lte": maxy,
 	}
 
 	models := u.ShowMany(filters)
-	return models
+	var users []string
+
+	for _, element := range models {
+		if ! u.contains(users,element.User) {
+			users = append(users, element.User)
+		}
+	}
+
+	return users
+}
+
+func (u *UserService) contains(sliceValues []string, search string) bool {
+    for _, v := range sliceValues {
+        if v == search {
+            return true
+        }
+    }
+    return false
 }
 
 func (u *UserService) Store(body bson.M) (bson.M, error) {

@@ -10,15 +10,17 @@ import (
 )
 
 type User struct {
-	Id 					bson.ObjectId 		`json:"_id,omitempty" bson:"_id,omitempty"`
-	Name				string				`json:"name" form:"name" binding:"required" bson:"name"`
+	Id		bson.ObjectId	`json:"_id,omitempty" bson:"_id,omitempty"`
+	User 	string 			`bson:"user" json:"user"`
+	X 		int 			`bson:"x" json:"x"`
+	Y 		int 			`bson:"y" json:"y"`
 }
 
 func(u *User) Init() {
 }
 
 func(u *User) getMongoCollectionSession() *mgo.Collection {
-	return config.Session.DB(os.Getenv("MONGODB_DATABASE")).C("users")
+	return config.Session.DB(os.Getenv("MONGODB_DATABASE")).C("usersheats")
 }
 
 func(u *User) Create(model *User) {
@@ -32,13 +34,9 @@ func(u *User) Create(model *User) {
 }
 
 func(u *User) Get(query bson.M) ([]User, error) {
-    // pipe := u.getMongoCollectionSession().Pipe([]bson.M{})
-    // resp := []bson.M{}
-	// err := pipe.All(&resp)
-	
 	results := []User{}
 	c := u.getMongoCollectionSession()
 	err := c.Find(query).All(&results)
-    
+
 	return results, err
 }

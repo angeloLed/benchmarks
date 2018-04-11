@@ -4,10 +4,9 @@ import (
 	"net/http"
 
 	"app/app/services"
-	// "gopkg.in/gin-gonic/gin.v1"
+	"strconv"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/mgo.v2/bson"
-	// "storageGo/app/transformers"
 )
 
 type UserController struct {
@@ -21,14 +20,31 @@ func GetInstance() UserController {
 }
 
 func (u *UserController) GetAll(c *gin.Context) {
-	users := u.Service.ShowMany(c.Request.URL.Query())
+
+	var filters bson.M //implementation of the filters in another spacetime
+
+	users := u.Service.ShowMany(filters)
 	c.JSON(http.StatusOK, gin.H{
 		"data": users,
 	})
 }
 
-func (u *UserController) getAllUserHasHeatZone(c *gin.Context) {
-	users := u.Service.getAllUserHasHeatZone(c.Request.URL.Query())
+func (u *UserController) GetAllUserHasHeatZone(c *gin.Context) {
+	var err error
+	var x ,y, rad int
+
+	x, err = strconv.Atoi(c.Query("x"))
+	y, err = strconv.Atoi(c.Query("y"))
+	rad, err = strconv.Atoi(c.Query("radius"))
+
+	if err != nil {
+		c.JSON(http.StatusUnprocessableEntity, gin.H{
+			"error": "missig x,y,radius",
+		})
+		return
+	}
+
+	users := u.Service.GetAllUserHasHeatZone(x, y ,rad)
 	c.JSON(http.StatusOK, gin.H{
 		"data": users,
 	})
@@ -48,5 +64,5 @@ func(u *UserController) Store(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{
 		"data":  user,
-	   })
+	})
 }
