@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://mongodb347/heats');
 
 
-class User {
+class Heat {
 
     constructor() {
-        this.model = mongoose.model('usersheats', { 
+        this.model = mongoose.model('usersHeats', { 
             user: String,
             x: Number,
             y: Number
@@ -20,9 +20,9 @@ class User {
     }
     
     store(data) {
-        const user = new this.model(data);
-        return user.save();
+        const heat = new this.model(data);
+        return heat.save();
     }
 }
 
-module.exports = User;
+module.exports = Heat;

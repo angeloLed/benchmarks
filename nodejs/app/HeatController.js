@@ -1,9 +1,9 @@
 'use strict';
 
-const Service = require('./UserService');
-const Transformer = require('./UserTransformer');
+const Service = require('./HeatService');
+const Transformer = require('./HeatTransformer');
 
-class UserController {
+class HeatController {
 
     constructor() {
         this.service = new Service;
@@ -32,4 +32,4 @@ class UserController {
     }
 }
 
-module.exports = UserController;
+module.exports = HeatController;

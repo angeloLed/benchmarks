@@ -1,11 +1,11 @@
 'use strict';
 
-const UserRepo = require('./UserRepo');
+const HeatRepo = require('./HeatRepo');
 
-class UserService {
+class HeatService {
 
     constructor() {
-        this.repo = new UserRepo;
+        this.repo = new HeatRepo;
     }
 
     getAll(filters = {}) {
@@ -13,21 +13,17 @@ class UserService {
     }
 
     getAllUserHasHeatZone(parameters) {
-
         let filters = {};
 
-        if( parameters.hasOwnProperty('x')) {
+        if( Object.prototype.hasOwnProperty.call(parameters, 'x')) {
             const minx = Number(parameters.x) - Number( parameters.radius || 0 );
             const maxx = Number(parameters.x) + Number( parameters.radius || 0 );
             filters.x = { $gte: minx, $lte: maxx };
         }
-        if( parameters.hasOwnProperty('y')) {
+        if( Object.prototype.hasOwnProperty.call(parameters, 'y')) {
             const miny = Number(parameters.y) - Number( parameters.radius || 0 );
             const maxy = Number(parameters.y) + Number( parameters.radius || 0 );
             filters.y = { $gte: miny, $lte: maxy };
-        }
-        if( parameters.hasOwnProperty('user')) {
-            filters.user = parameters.user;
         }
 
         return this.getAll(filters)
@@ -49,4 +45,4 @@ class UserService {
     }
 }
 
-module.exports = UserService;
+module.exports = HeatService;

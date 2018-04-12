@@ -1,6 +1,6 @@
 'use strict';
 
-class UserTransformer {
+class HeatTransformer {
 
     constructor() {}
 
@@ -21,4 +21,4 @@ class UserTransformer {
 	}
 }
 
-module.exports = UserTransformer;
+module.exports = HeatTransformer;

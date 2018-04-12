@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json())
 
 // Controller
-const userController = new (require('./app/UserController'));
+const heatController = new (require('./app/HeatController'));
 
 //middleware log
 // app.use(function (req, res, next) {
@@ -16,9 +16,9 @@ const userController = new (require('./app/UserController'));
 // });
 
 //routes
-app.get('/heats', (req,res) => { userController.getAll(req, res) });
-app.post('/heats', (req,res) => { userController.store(req, res) });
-app.get('/userHeats', (req,res) => { userController.getAllUserHasHeatZone(req, res) });
+app.get('/heats', (req,res) => { heatController.getAll(req, res) });
+app.post('/heats', (req,res) => { heatController.store(req, res) });
+app.get('/userHeats', (req,res) => { heatController.getAllUserHasHeatZone(req, res) });
 
 //run
 app.listen(80, () => {
