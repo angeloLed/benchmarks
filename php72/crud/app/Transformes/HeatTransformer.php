@@ -6,7 +6,7 @@ namespace App\Transformers;
  * Class Transformer
  *
  */
-class UserTransformer
+class HeatTransformer
 {
     /**
      * Transform a collection to a response

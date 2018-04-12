@@ -50,46 +50,46 @@ services:
   #     - NODE_ENV=production
   #   command: bash -c "cd /nodejs && npm install && npm run serve"
 
-  #nodejs vanilla
-  nodejsvanilla:
-    image: node:8.9.4
-    depends_on:
-        - mongodb347
-    networks:
-     - public
-    container_name: "nodejsvanilla"
-    volumes:
-     - ./nodejs-vanilla:/nodejs
-    ports:
-     - 8006:80
-    environment:
-      - NODE_ENV=production
-    command: bash -c "cd /nodejs && npm install && npm run serve"
-  
-  # php stack ( Nginx PHP-FPM ): https://github.com/OsLab/docker-php-nginx
-  # php72:
-  #   image: dockerphp/nginx:7.2-stretch
-  #   container_name: "php7.2"
+  # #nodejs vanilla
+  # nodejsvanilla:
+  #   image: node:8.9.4
   #   depends_on:
   #       - mongodb347
+  #   networks:
+  #    - public
+  #   container_name: "nodejsvanilla"
   #   volumes:
-  #       - ./php72/crud:/app/crud
-  #       - ./php72/nginx.conf:/etc/nginx/nginx.conf
-  #       - ./php72/php.ini:/etc/php5/fpm/php.ini
+  #    - ./nodejs-vanilla:/nodejs
   #   ports:
-  #       - "8002:80"
-  #   networks:
-  #    - public
-  # php72Composer:
-  #   image: dockerphp/nginx:7.2-stretch
-  #   container_name: "php7.2Composer"
-  #   volumes:
-  #       - ./php72/crud:/app/crud
-  #   networks:
-  #    - public
+  #    - 8006:80
   #   environment:
-  #     - COMPOSE_HTTP_TIMEOUT=200
-  #   command: bash -c "cd /app/crud && composer update --verbose -o"
+  #     - NODE_ENV=production
+  #   command: bash -c "cd /nodejs && npm install && npm run serve"
+  
+  # php stack ( Nginx PHP-FPM ): https://github.com/OsLab/docker-php-nginx
+  php72:
+    image: dockerphp/nginx:7.2-stretch
+    container_name: "php7.2"
+    depends_on:
+        - mongodb347
+    volumes:
+        - ./php72/crud:/app/crud
+        - ./php72/nginx.conf:/etc/nginx/nginx.conf
+        - ./php72/php.ini:/etc/php5/fpm/php.ini
+    ports:
+        - "8002:80"
+    networks:
+     - public
+  php72Composer:
+    image: dockerphp/nginx:7.2-stretch
+    container_name: "php7.2Composer"
+    volumes:
+        - ./php72/crud:/app/crud
+    networks:
+     - public
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=200
+    command: bash -c "cd /app/crud && composer update --verbose -o"
   
   #MONGODB
   mongodb347:

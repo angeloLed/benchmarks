@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class User extends Eloquent
+class Heat extends Eloquent
 {
 	protected $connection = 'mongodb';
     protected $collection = 'usersheats';

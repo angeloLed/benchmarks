@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Http\Response;
-use App\Models\User;
+use App\Models\Heat;
 
 /**
  * Class ApiController
@@ -13,11 +13,11 @@ use App\Models\User;
  * @author Angelo (LED) <angelolandino@htomail.it>
  * @copyright Copyright (c) 2015-present
  */
-class UserRepo
+class HeatRepo
 {
-    function __construct(User $user)
+    function __construct(Heat $heat)
     {
-        $this->model = $user;
+        $this->model = $heat;
     }
 
     public function getAll($filters = []): array

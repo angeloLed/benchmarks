@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Http\Response;
-use App\Repositories\UserRepo;
+use App\Repositories\HeatRepo;
 
 /**
  * Class ApiController
@@ -13,11 +13,11 @@ use App\Repositories\UserRepo;
  * @author Angelo (LED) <angelolandino@htomail.it>
  * @copyright Copyright (c) 2015-present
  */
-class UserService
+class HeatService
 {
-    function __construct(UserRepo $userRepo)
+    function __construct(HeatRepo $heatRepo)
     {
-        $this->repo = $userRepo;
+        $this->repo = $heatRepo;
     }
 
     public function getAll($filters = []): array
@@ -38,9 +38,6 @@ class UserService
             $miny = $parameters['y'] - ( $parameters['radius'] ?? 0);
             $maxy = $parameters['y'] + ( $parameters['radius'] ?? 0);
             $filters['y'] = [ '$gte' => $miny, '$lte' => $maxy ];
-        }
-        if( isset($parameters['user'])) {
-            $filters['user'] = $parameters['user'];
         }
 
         $heats = $this->repo->whereRaw($filters);

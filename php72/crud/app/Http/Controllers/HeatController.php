@@ -6,20 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 
-use App\Transformers\UserTransformer;
-use App\Services\UserService;
+use App\Transformers\HeatTransformer;
+use App\Services\HeatService;
 
-class UserController extends Controller
+class HeatController extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(UserService $userService, UserTransformer $userTransformer)
+    public function __construct(HeatService $heatService, HeatTransformer $heatTransformer)
     {
-        $this->service = $userService;
-        $this->transformer = $userTransformer;
+        $this->service = $heatService;
+        $this->transformer = $heatTransformer;
     }
 
     protected function respond($data, $headers = [])
@@ -29,10 +29,10 @@ class UserController extends Controller
 
     public function all(): JsonResponse
     {
-        $users = $this->service->getAll();
+        $heats = $this->service->getAll();
         $this->statusCode = 200;
         return $this->respond(
-            ['data' => $this->transformer->transformMany($users)]
+            ['data' => $this->transformer->transformMany($heats)]
         );
     }
 
@@ -47,10 +47,10 @@ class UserController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $user = $this->service->store($request->all());
+        $heat = $this->service->store($request->all());
         $this->statusCode = 201;
         return $this->respond(
-            ['data' => $this->transformer->transform($user)]
+            ['data' => $this->transformer->transform($heat)]
         );
     }
 }
