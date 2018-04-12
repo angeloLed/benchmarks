@@ -6,19 +6,19 @@ networks:
 services:
   
   #dotnet
-  dotnet206:
-    image: microsoft/dotnet:2.0.6-sdk-2.1.104-jessie
-    depends_on:
-        - mongodb347
-    networks:
-     - public
-    container_name: "dotnet2.0.6"
-    volumes:
-     - ./dotnetcore_cs:/app
-    ports:
-     - 8004:80
-    command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
-    # command: sh -c "cd /app && dotnet new mvc "
+  # dotnet206:
+  #   image: microsoft/dotnet:2.0.6-sdk-2.1.104-jessie
+  #   depends_on:
+  #       - mongodb347
+  #   networks:
+  #    - public
+  #   container_name: "dotnet2.0.6"
+  #   volumes:
+  #    - ./dotnetcore_cs:/app
+  #   ports:
+  #    - 8004:80
+  #   command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
+  #   # command: sh -c "cd /app && dotnet new mvc "
 
   #golang
   # golang1101Gin:
@@ -50,21 +50,21 @@ services:
   #     - NODE_ENV=production
   #   command: bash -c "cd /nodejs && npm install && npm run serve"
 
-  # #nodejs vanilla
-  # nodejsvanilla:
-  #   image: node:8.9.4
-  #   depends_on:
-  #       - mongodb347
-  #   networks:
-  #    - public
-  #   container_name: "nodejsvanilla"
-  #   volumes:
-  #    - ./nodejs-vanilla:/nodejs
-  #   ports:
-  #    - 8006:80
-  #   environment:
-  #     - NODE_ENV=production
-  #   command: bash -c "cd /nodejs && npm install && npm run serve"
+  #nodejs vanilla
+  nodejsvanilla:
+    image: node:8.9.4
+    depends_on:
+        - mongodb347
+    networks:
+     - public
+    container_name: "nodejsvanilla"
+    volumes:
+     - ./nodejs-vanilla:/nodejs
+    ports:
+     - 8006:80
+    environment:
+      - NODE_ENV=production
+    command: bash -c "cd /nodejs && npm install && npm run serve"
   
   # php stack ( Nginx PHP-FPM ): https://github.com/OsLab/docker-php-nginx
   # php72:
