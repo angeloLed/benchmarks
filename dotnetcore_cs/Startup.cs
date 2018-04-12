@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using App.Interfaces;
 using App.Data;
 using App.Models;
+using System;
 
 namespace app
 {
@@ -43,6 +44,15 @@ namespace app
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseCors("CorsPolicy");
+
+            app.Use((context, next) =>
+            {
+                //log
+                Console.WriteLine(context.Request.Method + " " + context.Request.Path);
+
+                return next();
+            });
+
 
             if (env.IsDevelopment())
             {
