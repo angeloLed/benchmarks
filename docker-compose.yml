@@ -17,7 +17,7 @@ services:
      - ./dotnetcore_cs:/app
     ports:
      - 8004:80
-    command: sh -c "cd /app && dotnet publish -c Release -o out"
+    command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
     # command: sh -c "cd /app && dotnet new mvc "
 
   #golang

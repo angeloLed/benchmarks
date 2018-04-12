@@ -1,16 +1,18 @@
-using System;  
-using System.ComponentModel.DataAnnotations;  
+using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
     
-namespace App.Models  
+namespace App.Models
 {  
     public class Heat  
     {  
-        public int _Id { get; set; }  
-        [Required]  
-        public string User { get; set; }  
-        [Required]  
-        public int X { get; set; }  
-        [Required]  
-        public int Y { get; set; }  
+        [BsonId]
+        public ObjectId Id { get; set; }
+        [BsonElement("user")]
+        public string User { get; set; }
+        [BsonElement("x")]
+        public int X { get; set; }
+        [BsonElement("y")]
+        public int Y { get; set; }
     }  
 }  
