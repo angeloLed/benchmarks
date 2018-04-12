@@ -8,7 +8,7 @@ mongoose.connect('mongodb://mongodb347/heats');
 class User {
 
     constructor() {
-        this.model = mongoose.model('usersHeats', { 
+        this.model = mongoose.model('usersheats', { 
             user: String,
             x: Number,
             y: Number

@@ -10,10 +10,10 @@ app.use(bodyParser.json())
 const userController = new (require('./app/UserController'));
 
 //middleware log
-app.use(function (req, res, next) {
-    console.log( req.method + ' ' + req.originalUrl);
-    next();
-});
+// app.use(function (req, res, next) {
+//     console.log( req.method + ' ' + req.originalUrl);
+//     next();
+// });
 
 //routes
 app.get('/heats', (req,res) => { userController.getAll(req, res) });

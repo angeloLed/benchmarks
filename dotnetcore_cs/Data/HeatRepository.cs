@@ -32,8 +32,30 @@ namespace App.Data
             }
         }
 
-        // query after internal or internal id
-        //
+        public async Task<IEnumerable<Heat>> getAllUserHasHeatZone(int x, int y, int radius)
+        {
+            try
+            {
+                string query = "";
+
+                int min = x - radius;
+                int max = x + radius;
+                query += " x: { $gte: "+min+", $lte: "+max+" },";
+
+                min = y - radius;
+                max = y + radius;
+
+                query += " y: { $gte: "+min+", $lte: "+max+" }";
+
+                return await _context.Heats.Find(BsonDocument.Parse("{"+query+"}")).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
+
         public async Task<Heat> GetHeat(string id)
         {
             try
