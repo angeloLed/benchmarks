@@ -9,21 +9,21 @@ import (
 	"os"
 )
 
-type User struct {
+type Heat struct {
 	Id		bson.ObjectId	`json:"_id,omitempty" bson:"_id,omitempty"`
 	User 	string 			`bson:"user" json:"user"`
 	X 		int 			`bson:"x" json:"x"`
 	Y 		int 			`bson:"y" json:"y"`
 }
 
-func(u *User) Init() {
+func(u *Heat) Init() {
 }
 
-func(u *User) getMongoCollectionSession() *mgo.Collection {
+func(u *Heat) getMongoCollectionSession() *mgo.Collection {
 	return config.Session.DB(os.Getenv("MONGODB_DATABASE")).C("usersheats")
 }
 
-func(u *User) Create(model *User) {
+func(u *Heat) Create(model *Heat) {
 	c := u.getMongoCollectionSession()
 
 	model.Id = bson.NewObjectId()
@@ -33,8 +33,8 @@ func(u *User) Create(model *User) {
 	}
 }
 
-func(u *User) Get(query bson.M) ([]User, error) {
-	results := []User{}
+func(u *Heat) Get(query bson.M) ([]Heat, error) {
+	results := []Heat{}
 	c := u.getMongoCollectionSession()
 	err := c.Find(query).All(&results)
 

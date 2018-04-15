@@ -10,8 +10,8 @@ type Router struct {
 
 func (r *Router) Init(gr *gin.Engine) {
 
-	userController := controllers.GetInstance()
-	gr.GET("/users", userController.GetAll)
-	gr.GET("/userHeats", userController.GetAllUserHasHeatZone)
-	gr.POST("/users", userController.Store)
+	heatController := controllers.GetInstance()
+	gr.GET("/heats", heatController.GetAll)
+	gr.GET("/userHeats", heatController.GetAllUserHasHeatZone)
+	gr.POST("/heats", heatController.Store)
 }

@@ -6,31 +6,31 @@ import (
 	"app/app/models"
 )
 
-type UserService struct {
-	repo repositories.UserRepo
+type HeatService struct {
+	repo repositories.HeatRepo
 }
 
-func (u *UserService) Init() {
-	u.repo = repositories.UserRepo{}
+func (u *HeatService) Init() {
+	u.repo = repositories.HeatRepo{}
 }
 
-func (u *UserService) ShowMany(filters bson.M) ([]models.User) {
+func (u *HeatService) ShowMany(filters bson.M) ([]models.Heat) {
 	models := u.repo.ShowAll(filters)
 	return models
 }
 
-func (u *UserService) GetAllUserHasHeatZone(x int, y int, radius int) ([]string) {
+func (u *HeatService) GetAllUserHasHeatZone(x int, y int, radius int) ([]string) {
 
 	filters := bson.M{}
 
 	minx := x - radius
-	maxx := y + radius
+	maxx := x + radius
 	filters["x"] = bson.M{
 		"$gte": minx,
 		"$lte": maxx,
 	}
 
-	miny := x - radius
+	miny := y - radius
 	maxy := y + radius
 	filters["y"] = bson.M{ 
 		"$gte": miny,
@@ -49,7 +49,7 @@ func (u *UserService) GetAllUserHasHeatZone(x int, y int, radius int) ([]string)
 	return users
 }
 
-func (u *UserService) contains(sliceValues []string, search string) bool {
+func (u *HeatService) contains(sliceValues []string, search string) bool {
     for _, v := range sliceValues {
         if v == search {
             return true
@@ -58,6 +58,6 @@ func (u *UserService) contains(sliceValues []string, search string) bool {
     return false
 }
 
-func (u *UserService) Store(body bson.M) (bson.M, error) {
+func (u *HeatService) Store(body bson.M) (bson.M, error) {
 	return u.repo.Store(body)
 }

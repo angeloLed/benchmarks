@@ -9,27 +9,27 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-type UserController struct {
-	Service services.UserService
+type HeatController struct {
+	Service services.HeatService
 }
 
-func GetInstance() UserController {
-	service := services.UserService{}
+func GetInstance() HeatController {
+	service := services.HeatService{}
 	service.Init()
-	return UserController{Service: service}
+	return HeatController{Service: service}
 }
 
-func (u *UserController) GetAll(c *gin.Context) {
+func (u *HeatController) GetAll(c *gin.Context) {
 
 	var filters bson.M //implementation of the filters in another spacetime
 
-	users := u.Service.ShowMany(filters)
+	heats := u.Service.ShowMany(filters)
 	c.JSON(http.StatusOK, gin.H{
-		"data": users,
+		"data": heats,
 	})
 }
 
-func (u *UserController) GetAllUserHasHeatZone(c *gin.Context) {
+func (u *HeatController) GetAllUserHasHeatZone(c *gin.Context) {
 	var err error
 	var x ,y, rad int
 
@@ -51,18 +51,18 @@ func (u *UserController) GetAllUserHasHeatZone(c *gin.Context) {
 }
 
 
-func(u *UserController) Store(c *gin.Context) {
+func(u *HeatController) Store(c *gin.Context) {
 	
 	body := bson.M{}
 	c.BindJSON(&body)
 
-	user, err := u.Service.Store(body)
+	heat, err := u.Service.Store(body)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"data":  user,
+		"data":  heat,
 	})
 }

@@ -20,7 +20,7 @@ server.on('request', function (req, res) {
 
     req.on('end', function () {
         //log
-        // console.log( req.method + ' ' + req.url);
+        console.log( req.method + ' ' + req.url);
 
         //body to json
         req.body = JSON.parse(body || '{}');
