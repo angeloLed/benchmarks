@@ -29,7 +29,7 @@ namespace App.Controllers
         // GET userHeats
         [NoCache]
         [HttpGet("userHeats")]
-        public async Task<IEnumerable<Heat>> getAllUserHasHeatZone(int x, int y, int radius)
+        public async Task<List<string>> getAllUserHasHeatZone(int x, int y, int radius)
         {
             return await _heatRepository.getAllUserHasHeatZone(x, y, radius);
         }
@@ -53,19 +53,5 @@ namespace App.Controllers
                 User = newHeat.User
             });
         }
-
-        // PUT heats/:id
-        // [HttpPut("{id}")]
-        // public void Put(string id, [FromBody]string value)
-        // {
-        //     _heatRepository.UpdateHeatDocument(id, value);
-        // }
-
-        // // DELETE heats/:id
-        // [HttpDelete("{id}")]
-        // public void Delete(string id)
-        // {
-        //     _heatRepository.RemoveHeat(id);
-        // }
     }
 }
