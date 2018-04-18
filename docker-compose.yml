@@ -5,34 +5,34 @@ networks:
      name: led-network
 services:
   
-  # #dotnet
-  # dotnet206:
-  #   image: microsoft/dotnet:2.0.6-sdk-2.1.104-jessie
-  #   depends_on:
-  #       - mongodb347
-  #   networks:
-  #    - public
-  #   container_name: "dotnet2.0.6"
-  #   volumes:
-  #    - ./dotnetcore_cs:/app
-  #   ports:
-  #    - 8004:80
-  #   command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
-  #   # command: sh -c "cd /app && dotnet new mvc "
-
-  #golang
-  golang1101Gin:
-    image: golang:1.10.1
+  #dotnet
+  dotnet206:
+    image: microsoft/dotnet:2.0.6-sdk-2.1.104-jessie
     depends_on:
         - mongodb347
     networks:
      - public
-    container_name: "golang1.10.1Gin"
+    container_name: "dotnet2.0.6"
     volumes:
-     - ./golang:/go/src/app
+     - ./dotnetcore_cs:/app
     ports:
-     - 8003:80
-    command: sh -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run main.go"
+     - 8001:80
+    command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
+    # command: sh -c "cd /app && dotnet new mvc "
+
+  # #golang
+  # golang1101Gin:
+  #   image: golang:1.10.1
+  #   depends_on:
+  #       - mongodb347
+  #   networks:
+  #    - public
+  #   container_name: "golang1.10.1Gin"
+  #   volumes:
+  #    - ./golang:/go/src/app
+  #   ports:
+  #    - 8001:80
+  #   command: sh -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run main.go"
 
   # #nodejs + express
   # nodejs:
@@ -61,7 +61,7 @@ services:
   #   volumes:
   #    - ./nodejs-vanilla:/nodejs
   #   ports:
-  #    - 8006:80
+  #    - 8001:80
   #   environment:
   #     - NODE_ENV=production
   #   command: bash -c "cd /nodejs && npm install && npm run serve"
@@ -77,7 +77,7 @@ services:
   #       - ./php72/nginx.conf:/etc/nginx/nginx.conf
   #       - ./php72/php.ini:/etc/php5/fpm/php.ini
   #   ports:
-  #       - "8002:80"
+  #       - "8001:80"
   #   networks:
   #    - public
   # php72Composer:

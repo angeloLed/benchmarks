@@ -1,4 +1,4 @@
-# Benchmark Microservices Project #
+# Benchmark Dockerized Microservices #
 
 ## The purpose
 
@@ -12,7 +12,7 @@ Obviously, there is no absolutely perfect language, there is only the most suita
 
 This is a "real-life" benchmarks of some dockerized CRUD backend applications in some different languages. 
 
-There are two routes for every CRUD, one to insert the records of user heatmap and the other one to read them with a query with code logic.
+There are two routes for every CRUD, one to insert the records of user heatmap and the other one to read them with a query and code logic.
 
   
 
@@ -77,4 +77,8 @@ GO: GET
 
 ### Resume
 ![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-rs-1.png "")
-![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-avg-1.png "") 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-avg-1.png "")
+
+## NEXT
+- other languages with other frameworks
+- other docker configuration
