@@ -23,8 +23,15 @@ func(u *Heat) getMongoCollectionSession() *mgo.Collection {
 	return config.Session.DB(os.Getenv("MONGODB_DATABASE")).C("usersheats")
 }
 
+func(u *Heat) getMongoCollectionSessionClone() *mgo.Session {
+	return config.Session.Copy()
+}
+
 func(u *Heat) Create(model *Heat) {
-	c := u.getMongoCollectionSession()
+	s := u.getMongoCollectionSessionClone()
+	defer s.Close()
+	c := s.DB(os.Getenv("MONGODB_DATABASE")).C("usersheats")
+	// c := u.getMongoCollectionSession()
 
 	model.Id = bson.NewObjectId()
 	err := c.Insert(model)
@@ -34,8 +41,13 @@ func(u *Heat) Create(model *Heat) {
 }
 
 func(u *Heat) Get(query bson.M) ([]Heat, error) {
+	s := u.getMongoCollectionSessionClone()
+	defer s.Close()
+	c := s.DB(os.Getenv("MONGODB_DATABASE")).C("usersheats")
+	// c := u.getMongoCollectionSession()
+
 	results := []Heat{}
-	c := u.getMongoCollectionSession()
+
 	err := c.Find(query).All(&results)
 
 	return results, err

@@ -30,6 +30,8 @@ func Connect() {
 	fmt.Printf("Connecting to mongoDb server...\n")
 	mongo, err := mgo.ParseURL(uri)
 	s, err := mgo.Dial(uri)
+
+
 	if err != nil {
 		fmt.Printf("Can't connect to mongo, go error %v\n", err)
 		panic(err.Error())
