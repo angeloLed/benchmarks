@@ -70,7 +70,7 @@ PHP: GET
 ![picture](https://github.com/angeloLed/benchmarks/blob/master/other/PHP-GET.png "")
 
 GO: POST 
-![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GP-POST.png "")
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GO-POST.png "")
 
 GO: GET 
-![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GP-GET.png "")
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GO-GET.png "")
