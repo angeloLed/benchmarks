@@ -76,6 +76,5 @@ GO: GET
 ![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GO-GET.png "")
 
 ### Resume
-R/S  | AVG
-------------- | -------------
-![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-rs-1.png "")  | ![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-avg-1.png "") 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-rs-1.png "")
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-avg-1.png "") 
