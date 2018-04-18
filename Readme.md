@@ -27,10 +27,11 @@ All is under container docker, just run "docker-composer up" and all the needs w
 - Golang 1.10.1 + Gin 1.2
 - DotNetCore 2.0.6 with Kestrel config
 
+### Database
+- Mongodb 3.4.7
+
 ### Note
 PHP Image: https://github.com/OsLab/docker-php-nginx with mongo driver 
-
- 
 
 ### Docker Configuration
 - 2 CPU
@@ -41,3 +42,8 @@ PHP Image: https://github.com/OsLab/docker-php-nginx with mongo driver
 
 ### Tool for benchmarking: 
  - Apache JMeter 3.3 r1808647 with randomized parameter
+
+## RESULTS
+
+DotNetCore - GET 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/DN-POST.png "")
