@@ -38,9 +38,9 @@ PHP Image: https://github.com/OsLab/docker-php-nginx with mongo driver
  - Thears: 200
  - RUP: 20
 
-# RESULTS
+# GO WITH BENCHMARK
 
-## Docker Configuration
+### Docker Configuration
 - 2 CPU
 - 2 GB RAM
 - 1 GB SWAP
