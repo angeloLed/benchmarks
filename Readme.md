@@ -33,17 +33,44 @@ All is under container docker, just run "docker-composer up" and all the needs w
 ### Note
 PHP Image: https://github.com/OsLab/docker-php-nginx with mongo driver 
 
-### Docker Configuration
+### Configuration of JMeter 3.3 r1808647
+ - randomize parameters
+ - Thears: 200
+ - RUP: 20
+
+# RESULTS
+
+## Docker Configuration
 - 2 CPU
 - 2 GB RAM
 - 1 GB SWAP
 
- 
-
-### Tool for benchmarking: 
- - Apache JMeter 3.3 r1808647 with randomized parameter
-
-## RESULTS
-
-DotNetCore - GET 
+DotNetCore: POST 
 ![picture](https://github.com/angeloLed/benchmarks/blob/master/other/DN-POST.png "")
+
+DotNetCore: GET 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/DN-GET.png "")
+
+NodeJs + express: POST 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/NODEJS-POST.png "")
+
+NodeJs + express: GET 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/NODEJS-GET.png "")
+
+NodeJs Vanilla: POST 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/NODEJSV-POST.png "")
+
+NodeJs Vanilla: GET 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/NODEJSV-GET.png "")
+
+PHP: POST 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/PHP-POST.png "")
+
+PHP: GET 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/PHP-GET.png "")
+
+GO: POST 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GP-POST.png "")
+
+GO: GET 
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GP-GET.png "")
