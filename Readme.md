@@ -41,7 +41,7 @@ PHP Image: https://github.com/OsLab/docker-php-nginx with mongo driver
 # GO WITH BENCHMARK
 
 ### Docker Configuration
-- 2 CPU
+- 2 CORE
 - 2 GB RAM
 - 1 GB SWAP
 
@@ -74,3 +74,6 @@ GO: POST
 
 GO: GET 
 ![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GO-GET.png "")
+
+### Resume
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume1.png "")
