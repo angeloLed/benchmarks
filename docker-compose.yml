@@ -20,19 +20,19 @@ services:
   #   command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
   #   # command: sh -c "cd /app && dotnet new mvc "
 
-  # #golang
-  # golang1101Gin:
-  #   image: golang:1.10.1
-  #   depends_on:
-  #       - mongodb347
-  #   networks:
-  #    - public
-  #   container_name: "golang1.10.1Gin"
-  #   volumes:
-  #    - ./golang:/go/src/app
-  #   ports:
-  #    - 8003:80
-  #   command: sh -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run main.go"
+  #golang
+  golang1101Gin:
+    image: golang:1.10.1
+    depends_on:
+        - mongodb347
+    networks:
+     - public
+    container_name: "golang1.10.1Gin"
+    volumes:
+     - ./golang:/go/src/app
+    ports:
+     - 8003:80
+    command: sh -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run main.go"
 
   # #nodejs + express
   # nodejs:

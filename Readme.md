@@ -2,9 +2,9 @@
 
 ## The purpose
 
-This project is to have a clearer idea of what are the real performances of microservices backend with framework and ODM / ORM. Usually, the benchmarks that you find around the web are limited to a simple "hello word" or something else of "easy".
+This project give to you a clearer idea of what are the real performances of microservices backend with ODM / ORM. Usually, the benchmarks that you find around the web are limited to a simple "hello word" or something else of "easy".
 
-Obviously, there is no absolutely perfect language, there is only the most suitable according to the needs. 
+Obviously, there is no absolutely perfect language, there is only the most suitable according to the needs.
 
  
 
@@ -76,4 +76,6 @@ GO: GET
 ![picture](https://github.com/angeloLed/benchmarks/blob/master/other/GO-GET.png "")
 
 ### Resume
-![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume1.png "")
+R/S  | AVG
+------------- | -------------
+![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-rs-1.png "")  | ![picture](https://github.com/angeloLed/benchmarks/blob/master/other/resume-avg-1.png "") 
