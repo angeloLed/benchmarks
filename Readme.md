@@ -2,7 +2,7 @@
 
 ## The purpose
 
-This project give to you a clearer idea of what are the real performances of microservices backend with ODM / ORM. Usually, the benchmarks that you find around the web are limited to a simple "hello word" or something else of "easy".
+This project give to you a clearer idea of what are the real performances of microservices backend with ODM / ORM in a little machine. Usually, the benchmarks that you find around the web are limited to a simple "hello word" or something else of "easy".
 
 Obviously, there is no absolutely perfect language, there is only the most suitable according to the needs.
 
@@ -14,11 +14,7 @@ This is a "real-life" benchmarks of some dockerized CRUD backend applications in
 
 There are two routes for every CRUD, one to insert the records of user heatmap and the other one to read them with a query and code logic.
 
-  
-
 All is under container docker, just run "docker-composer up" and all the needs will be resolve automatically. 
-
-  
 
 ### Candidates
 - PHP 7.2 + Lumen v5.6 + Jenssegers MongoDB ODM v3.4.1 
