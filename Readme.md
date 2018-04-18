@@ -14,8 +14,6 @@ This is a "real-life" benchmarks of some dockerized CRUD backend applications in
 
 There are two routes for every CRUD, one to insert the records of user heatmap and the other one to read the records with a query and code logic.
 
-All is under container docker, just run "docker-composer up" and all the needs will be resolve automatically. 
-
 ### Candidates
 - PHP 7.2 + Lumen v5.6 + Jenssegers MongoDB ODM v3.4.1 
 - Nodejs 8.9.4 + Express v4.16.3 + Mongoose v5.0.13 
