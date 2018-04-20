@@ -5,20 +5,20 @@ networks:
      name: led-network
 services:
   
-  #dotnet
-  dotnet206:
-    image: microsoft/dotnet:2.0.6-sdk-2.1.104-jessie
-    depends_on:
-        - mongodb347
-    networks:
-     - public
-    container_name: "dotnet2.0.6"
-    volumes:
-     - ./dotnetcore_cs:/app
-    ports:
-     - 8001:80
-    command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
-    # command: sh -c "cd /app && dotnet new mvc "
+  # #dotnet
+  # dotnet206:
+  #   image: microsoft/dotnet:2.0.6-sdk-2.1.104-jessie
+  #   depends_on:
+  #       - mongodb347
+  #   networks:
+  #    - public
+  #   container_name: "dotnet2.0.6"
+  #   volumes:
+  #    - ./dotnetcore_cs:/app
+  #   ports:
+  #    - 8001:80
+  #   command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
+  #   # command: sh -c "cd /app && dotnet new mvc "
 
   # #golang
   # golang1101Gin:
@@ -90,6 +90,22 @@ services:
   #   environment:
   #     - COMPOSE_HTTP_TIMEOUT=200
   #   command: bash -c "cd /app/crud && composer update --verbose -o"
+
+  #php vanilla
+  phpvanilla:
+    image: angeloled/php-mongodb:latest
+    depends_on:
+        - mongodb347
+    networks:
+     - public
+    container_name: "phpvanilla"
+    volumes:
+     - ./php-vanilla:/code
+    ports:
+     - 8001:80
+    environment:
+      - NODE_ENV=production
+    command: bash -c "php -S 0.0.0.0:80 index.php"
   
   #MONGODB
   mongodb347:

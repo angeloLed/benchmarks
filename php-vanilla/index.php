@@ -1,0 +1,6 @@
+<?php
+
+//$_SERVER['QUERY_STRING']
+//$_SERVER['QUERY_STRING']
+//$_SERVER['REQUEST_METHOD']
+var_dump($_SERVER);
