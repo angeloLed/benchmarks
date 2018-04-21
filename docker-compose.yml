@@ -1,20 +1,20 @@
 version: "2"
 services:
   
-  #dotnet
-  dotnet206:
-    image: microsoft/dotnet:2.0.6-sdk-2.1.104-jessie
-    depends_on:
-        - mongodb347
-    networks:
-     - public
-    container_name: "dotnet2.0.6"
-    volumes:
-     - ./dotnetcore_cs:/app
-    ports:
-     - 8001:80
-    command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
-    # command: sh -c "cd /app && dotnet new mvc "
+  ##dotnet
+  #dotnet206:
+  #  image: microsoft/dotnet:2.0.6-sdk-2.1.104-jessie
+  #  depends_on:
+  #      - mongodb347
+  #  networks:
+  #   - public
+  #  container_name: "dotnet2.0.6"
+  #  volumes:
+  #   - ./dotnetcore_cs:/app
+  #  ports:
+  #   - 8001:80
+  #  command: sh -c "cd /app && dotnet publish -c Release -o out && dotnet run"
+  #  # command: sh -c "cd /app && dotnet new mvc "
 
   # #golang
   # golang1101Gin:
@@ -86,12 +86,26 @@ services:
   #   environment:
   #     - COMPOSE_HTTP_TIMEOUT=200
   #   command: bash -c "cd /app/crud && composer update --verbose -o"
+
+  
+  #rust
+  rust1250:
+    image: rust:1.25.0-stretch
+    depends_on:
+        - mongodb347
+    container_name: "rust1.25.0"
+    volumes:
+     - ./rust:/app
+    ports:
+     - 8001:80
+    environment:
+     - USER=usertest
+    command: sh -c "cd /app && cargo build --release && ./target/debug/real_life_crud"
+    #command: sh -c "cargo new /app --bin --vcs none"
   
   #MONGODB
   mongodb347:
     image: mongo:3.4.7
-    networks:
-      - public
     container_name: "mongodb3.4.7"
     environment:
       - MONGO_DATA_DIR=/data/db
@@ -100,5 +114,3 @@ services:
       - ./mongodb/db:/data/db
     ports:
       - 27017:27017
-    networks:
-      - public

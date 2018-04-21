@@ -1,0 +1,7 @@
+[package]
+name = "real_life_crud"
+version = "0.1.0"
+authors = ["Angelo <angelolandino@hotmail.it>"]
+
+[dependencies]
+iron = "0.6.*"
