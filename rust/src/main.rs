@@ -2,19 +2,16 @@ extern crate iron;
 extern crate router;
 
 use iron::prelude::*;
-use iron::status;
 use router::Router;
 
+mod heat_controller;
 
 fn main() {
-    let mut router = Router::new();           // Alternative syntax:
-    router.get("/", handler, "index");        // let router = router!(index: get "/" => handler,
-    router.get("/:query", handler, "query");  //                      query: get "/:query" => handler);
+    let mut router = Router::new();
 
-    fn handler(req: &mut Request) -> IronResult<Response> {
-        let ref query = req.extensions.get::<Router>().unwrap().find("query").unwrap_or("/");
-        Ok(Response::with((status::Ok, *query)))
-    }
+    //set routes
+    router.get("/userHeats/:query", heat_controller::get_all_user_has_heat_zone, "index");
+    router.post("/heats", heat_controller::store, "query");
 
     let _server = Iron::new(router).http("0.0.0.0:80").unwrap();
     println!("On 80");
