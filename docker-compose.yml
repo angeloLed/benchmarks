@@ -100,7 +100,7 @@ services:
      - 8001:80
     environment:
      - USER=usertest
-    command: sh -c "cd /app && cargo build --release && ./target/debug/real_life_crud"
+    command: sh -c "cd /app && cargo build --release && ./target/release/real_life_crud"
     #command: sh -c "cargo new /app --bin --vcs none"
   
   #MONGODB

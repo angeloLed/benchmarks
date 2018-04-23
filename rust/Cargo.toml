@@ -5,3 +5,4 @@ authors = ["Angelo <angelolandino@hotmail.it>"]
 
 [dependencies]
 iron = "0.6.*"
+router = "0.6.*"
